@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "探寻社交网络中的关系: 统计网络模型初探"
-date: 2013-08-09 16:26
+date: 2008-05-01 16:26
 comments: true
 categories: 小说
 tags:
