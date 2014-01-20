@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "探寻社交网络中的关系: 统计网络模型初探"
+title: "围城里的快乐"
 date: 2008-05-01 16:26
 comments: true
 categories: 小说
