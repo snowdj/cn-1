@@ -1,3 +1,15 @@
+---
+layout: post
+title: "探寻社交网络中的关系: 统计网络模型初探"
+date: 2013-08-09 16:26
+comments: true
+categories: 小说
+tags:
+- 大学
+- 理想
+- 爱情
+---
+
 
 #围城里的快乐
 
