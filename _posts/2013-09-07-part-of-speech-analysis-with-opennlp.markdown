@@ -6,6 +6,9 @@ comments: true
 categories: 
 - text mining
 - R
+tags:
+- part of speech
+- NLP
 ---
 
 ![](http://upload.wikimedia.org/wikipedia/en/thumb/6/62/LF_OpenNLP_Parser.jpg/800px-LF_OpenNLP_Parser.jpg)
