@@ -4,8 +4,8 @@ title: "文本挖掘基础：使用openNLP进行词性标注"
 date: 2013-09-07 16:58
 comments: true
 categories: 
--text mining
--R
+- text mining
+- R
 ---
 
 ![](http://upload.wikimedia.org/wikipedia/en/thumb/6/62/LF_OpenNLP_Parser.jpg/800px-LF_OpenNLP_Parser.jpg)
