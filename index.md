@@ -1,5 +1,5 @@
 ---
-title: Chengjun's Blog: Follow your logic!
+title: Chengjun's Blog
 layout: page
 ---
 
