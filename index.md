@@ -1,5 +1,5 @@
 ---
-title: Chengjun's Blog
+title: 计算传播学
 layout: page
 ---
 

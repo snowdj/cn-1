@@ -15,8 +15,6 @@ tags:
 
 本文载于《数字媒体阅读报告》 
 
-## 重返沙堆：通往理解信息扩散的实在之路
-
   
 How Nature Works: The Science of Self-Organized Criticality 作者: Per Bak
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "从概念到真实：SNS的形式蜕变"
+title: "呓语与幻想：传播学疆界的扩张"
 date: 2011-07-19 00:00
 comments: true
 categories: 
@@ -10,7 +10,6 @@ tags:
 - 三体
 ---
 
-## 呓语与幻想：传播学疆界的扩张
 
 本文载于《数字媒体阅读报告》 
 
