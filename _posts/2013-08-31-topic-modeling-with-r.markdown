@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "使用R做topic modeling:词语筛选和主题数量确定"
+title: "使用R做topic modeling：词语筛选和主题数量确定"
 date: 2013-08-31 19:14
 comments: true
 categories:
