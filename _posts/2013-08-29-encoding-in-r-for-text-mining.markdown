@@ -1,9 +1,13 @@
 ---
 layout: post
-title: "使用R做Topic Modelling：举一个处理Encoding问题的例子"
+title: "使用R做topic modeling：举一个处理Encoding问题的例子"
 date: 2013-08-29 15:12
 comments: true
-categories: R， Topic modelling
+categories: 
+- topic models
+tags:
+- R
+- encoding
 ---
 
 

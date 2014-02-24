@@ -3,7 +3,8 @@ layout: post
 title: "探寻社交网络中的关系: 统计网络模型初探"
 date: 2013-08-09 16:26
 comments: true
-categories: network
+categories: 
+- network
 tags:
 - 网络
 - 计算传播学

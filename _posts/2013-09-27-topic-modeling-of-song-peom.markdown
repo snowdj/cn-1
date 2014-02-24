@@ -3,7 +3,10 @@ layout: post
 title: "东风夜放花千树：对宋词进行主题分析初探"
 date: 2013-09-27 00:02
 comments: true
-categories: topic_models; R
+categories: 
+- topic models
+tags:
+- R
 ---
 
 ![](http://forum.eedu.org.cn/upload/2008/02/27/90815055.jpg)

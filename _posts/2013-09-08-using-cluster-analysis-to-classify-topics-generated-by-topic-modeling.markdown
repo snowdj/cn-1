@@ -3,7 +3,10 @@ layout: post
 title: "使用聚类分析为主题模型划分主题类型"
 date: 2013-09-08 14:54
 comments: true
-categories: R;topic models
+categories: 
+- topic models
+tags:
+- R
 ---
 
 
