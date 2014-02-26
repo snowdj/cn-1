@@ -3,7 +3,8 @@ layout: post
 title: "围城里的快乐"
 date: 2008-05-01 16:26
 comments: true
-categories: 小说
+categories: 
+- 小说
 tags:
 - 大学
 - 理想
@@ -11,7 +12,6 @@ tags:
 ---
 
 
-#围城里的快乐
 
  ![](http://farm8.staticflickr.com/7409/9458136252_09cfae4b16_o.jpg)
 
