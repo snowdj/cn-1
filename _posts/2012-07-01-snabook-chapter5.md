@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "第五章 二模网络"
+title: "第5章 二模网络"
 date: 2012-07-01 00:00
 comments: true
 categories: 
