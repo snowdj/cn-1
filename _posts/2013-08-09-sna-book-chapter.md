@@ -425,6 +425,15 @@ statnet是一个R包 (Goodreau, Handcock, Hunter, Butts, & Morris, 2008)，其�
 
 举一个例子来理解流行性和相似性作为两种一般性的影响因素在指数随机图模型当中的刻画，读者可以参阅 Goodreau (2009)关于青少年个体属性（性别、种族、年级）对于社会网络构成的影响。Goodreau认为个体属性的主要效应在友谊形成网络当中主要可以区分为两类：社交性（sociality）和同质性（homophily）。其中前者对应于流行性，而后者对应于相似性。与之相应，在指数随机图模型的设定当中，前者通过nodefactor/nodecov测量，而后者主要通过nodematch测量。
 
+	# ERG Model Specification
+	m0<-ergm(n ~ edges + nodematch("User_province")
+			 + mutual + gwesp(fixed=T, cutoff=30), parallel=10)
+	summary(m0)
+	mcmc.diagnostics(m0)
+
+
+模型的运行结果如下：
+
 
                             Estimate Std. Error MCMC % p-value    
     edges                   -6.93374    0.03907      0  <1e-04 ***
@@ -439,6 +448,80 @@ statnet是一个R包 (Goodreau, Handcock, Hunter, Butts, & Morris, 2008)，其�
      
     AIC: 13506    BIC: 13552    (Smaller is better.) 
 
+	mcmc.diagnostics(m0)
+
+当然了，我们可以根据研究目的建立更加完整的网络模型。例如，在以下的模型m1当中，我们开始考虑朋友数量、粉丝数量、用户性别、用户级别（是否认证用户）对于网络模型中链接形成的影响。需要注意的是该模型的运行时间很长，读者需要耐心等待。
+
+	m1<-ergm(n ~ edges + nodecov("User_friends")+ nodecov("User_followers")
+			 + nodematch("User_province") + nodefactor("User_province")
+			 + nodematch("User_gender")+ nodematch("User_verified")
+			 + mutual + gwesp(fixed=T, cutoff=30), parallel=10)
+
+	summary(m1)
+	mcmc.diagnostics(m1)
+
+模型的运行结果如下：
+
+
+	# ==========================
+	#   Summary of model fit
+	# ==========================
+	#   
+	#   Formula:   n ~ edges + nodecov("User_friends") + nodecov("User_followers") + 
+	#   nodematch("User_province") + nodefactor("User_province") + 
+	#   nodematch("User_gender") + nodematch("User_verified") + mutual + 
+	#   gwesp(fixed = T, cutoff = 30)
+	# 
+	# Iterations:  20 
+	# 
+	# Monte Carlo MLE Results:
+	#   Estimate Std. Error MCMC %  p-value    
+	# edges                        -1.716e+01  3.984e-01      0  < 1e-04 ***
+	#   nodecov.User_friends         -1.626e-03  1.846e-04      0  < 1e-04 ***
+	#   nodecov.User_followers        5.482e-04  1.216e-05      0  < 1e-04 ***
+	#   nodematch.User_province       3.831e-01  1.835e-01      0 0.036892 *  
+	#   nodefactor.User_province.12   2.132e-01  3.502e-01      0 0.542661    
+	# nodefactor.User_province.13  -7.425e-01  6.034e-01      0 0.218500    
+	# nodefactor.User_province.14  -8.294e-01  1.031e+00      0 0.421116    
+	# nodefactor.User_province.15  -5.463e-01  1.254e+00      0 0.663011    
+	# nodefactor.User_province.21  -7.493e-01  5.439e-01      0 0.168295    
+	# nodefactor.User_province.22   8.519e-02  3.643e-01      0 0.815101    
+	# nodefactor.User_province.23  -2.727e-01  3.946e-01      0 0.489453    
+	# nodefactor.User_province.31  -3.235e-01  1.719e-01      0 0.059810 .  
+	# nodefactor.User_province.32  -1.399e-01  2.522e-01      0 0.579093    
+	# nodefactor.User_province.33  -1.466e-01  2.267e-01      0 0.517730    
+	# nodefactor.User_province.34  -2.558e-01  4.437e-01      0 0.564221    
+	# nodefactor.User_province.35  -4.032e-01  3.437e-01      0 0.240691    
+	# nodefactor.User_province.36   3.205e-01  5.578e-01      0 0.565517    
+	# nodefactor.User_province.37  -1.294e-01  4.125e-01      0 0.753818    
+	# nodefactor.User_province.41  -3.616e-01  4.546e-01      0 0.426427    
+	# nodefactor.User_province.42  -3.622e-01  3.374e-01      0 0.283047    
+	# nodefactor.User_province.43  -3.551e-01  4.317e-01      0 0.410737    
+	# nodefactor.User_province.44  -6.743e-02  1.567e-01      0 0.667042    
+	# nodefactor.User_province.45   1.205e-01  1.106e+00      0 0.913280    
+	# nodefactor.User_province.46  -2.464e-01  9.628e-01      0 0.798021    
+	# nodefactor.User_province.50  -4.050e-01  5.908e-01      0 0.492984    
+	# nodefactor.User_province.51  -6.097e-01  3.412e-01      0 0.074006 .  
+	# nodefactor.User_province.52  -3.054e-01  7.901e-01      0 0.699042    
+	# nodefactor.User_province.53   3.954e-01  5.112e-01      0 0.439207    
+	# nodefactor.User_province.61  -9.135e-02  4.958e-01      0 0.853833    
+	# nodefactor.User_province.62  -7.939e-01  1.505e+00      0 0.597808    
+	# nodefactor.User_province.64  -1.170e-01  1.641e+00      0 0.943158    
+	# nodefactor.User_province.71   2.458e+00  1.607e+00      0 0.126091    
+	# nodefactor.User_province.81   2.587e-03  4.796e-01      0 0.995696    
+	# nodefactor.User_province.100  3.966e-01  1.915e-01      0 0.038304 *  
+	#   nodefactor.User_province.400 -4.561e-01  2.430e-01      0 0.060461 .  
+	# nodematch.User_gender         5.707e-01  1.598e-01      0 0.000355 ***
+	#   nodematch.User_verified       9.986e+00  3.039e-01      0  < 1e-04 ***
+	#   mutual                       -8.400e+00  2.566e+00      0 0.001063 ** 
+	#   gwesp.fixed.0                -4.064e+00  8.897e-01      0  < 1e-04 ***
+	#   ---
+	#   Signif. codes:  0 ?**?0.001 ?*?0.01 ??0.05 ??0.1 ??1 
+	# 
+	# Null Deviance: 1048080  on 756030  degrees of freedom
+	# Residual Deviance:    7680  on 755991  degrees of freedom
+	# 
+	# AIC: 7758    BIC: 8208    (Smaller is better.) 
     
 ### 六、讨论和结论
 
