@@ -20,13 +20,21 @@ tags:
 
 
 第一步，生成网络。
-	
+
+	require(igraph)
 	# generate a social graph
 	size = 50
 	
-	# 最近邻耦合网络
+	# 规则网
+	g <- graph.tree(size, children = 2); plot(g)
+	g <- graph.star(size); plot(g)
+	g <- graph.full(size); plot(g)
 	g <- graph.ring(size); plot(g)
-	g <- connect.neighborhood(g, 2); plot(g)
+	g <- connect.neighborhood(g, 2); plot(g) # 最近邻耦合网络
+	
+	# 随机网络
+	g1 <- erdos.renyi.game(size, 0.1)
+
     # 无标度网络
 	g = barabasi.game(size) ; plot(g)
 	# 小世界网络
@@ -49,7 +57,15 @@ tags:
 	coins = c(0,1)
 	n = length(coins)
 	sample(coins, 1, replace=TRUE, prob=rep(1/n, n))
+	
 
+显然，这很容易扩展到更一般的情况，比如节点的平均感染能力是0.128，那么可以这么写：
+
+	p = 0.128
+	coins = c(rep(1, p*1000), rep(0,(1-p)*1000))
+	n = length(coins)
+	sample(coins, 1, replace=TRUE, prob=rep(1/n, n))
+	
 当然最重要的一步是要能按照“时间”更新网络节点被感染的信息。
 
 	# function for updating the diffusers
@@ -87,7 +103,7 @@ tags:
 	# generate a palette
 	E(g)$color <- "blueviolet"
 	V(g)$color <- "white"
-	set.seed(2014); layout.old <- layout.fruchterman.reingold(g) # about 3 minute3
+	set.seed(2014); layout.old <- layout.fruchterman.reingold(g) 
 	V(g)$color[V(g)%in%diffusers] = "red"
 	plot(g, layout =layout.old)
 
