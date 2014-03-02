@@ -172,7 +172,7 @@ tags:
 	  while(m <= length(infected)){
 	    # start the plot
 	    layout(matrix(c(1, 2, 1, 3), 2,2, byrow = TRUE), widths=c(3,1), heights=c(1, 1))
-	    V(g)$color <- "white"
+	    V(g)$color = "white"
 	    V(g)$color[V(g)%in%infected[[m]]] = "red"
 	    num_cum = unlist(lapply(1:m, function(x) length(infected[[x]]) ))
 	    p_cum = num_cum/size
