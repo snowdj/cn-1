@@ -275,10 +275,10 @@ tags:
     install.packages("statnet")
     library(statnet)  
     # 首先随机生成3个由10个节点构成的有向网络
-    g<-array(dim=c(3,10,10))
-    g[1,,]<-rgraph(10) 
-    g[2,,]<-rgraph(10,tprob=g[1,,]*0.8) # 设置g1和g2两个网络强相关
-    g[3,,]<-1; g[3,1,2]<-0 # g3接近于一个派系（clique）
+    g = array(dim=c(3,10,10))
+    g[1,,] = rgraph(10) 
+    g[2,,] = rgraph(10,tprob=g[1,,]*0.8) # 设置g1和g2两个网络强相关
+    g[3,,] = 1; g[3,1,2] = 0 # g3接近于一个派系（clique）
     # 绘制这3个网络
     par(mfrow=c(1,3))
     for(i in 1:3) {
@@ -290,10 +290,10 @@ tags:
 
 在通常使用皮尔逊相关系数的时候，可以用t统计量对总体相关系数为0的原假设进行检验。但在计算网络的相关系数（graph correlations）时，经典的零假设检验方法往往会带来偏差，因而并不适用。通常使用非参数检验的方法，比如QAP(Quadratic Assignment Procedure)检验。
 
-矩阵的随机排列（Random matrix permutations）是QAP检验的关键部分，在子软件包sna中主要通过rmperm来进行。通过矩阵的随机排列，可以对网络中的链接进行随机置换（relabelling）或重新“洗牌”（reshuffling），并得到**一组**（比如1000个）重连后的网络。
+矩阵的随机排列（Random matrix permutations）是QAP检验的关键部分，在子软件包sna中主要通过rmperm来进行。通过矩阵的随机排列，可以对网络中的节点（的**编号**）进行随机置换（relabelling），并得到**一组**（比如1000个）重连后的网络。
     
     # R程序11-9：矩阵的随机置换方法
-    j<-rgraph(5) # 随机生成一个网络
+    j = rgraph(5) # 随机生成一个网络
     j  #看一下这个网络的矩阵形式
     rmperm(j) #随机置换后的网络的矩阵形式
 
@@ -325,16 +325,12 @@ tags:
 
 为了进行模型估计，还需要引入一些参数（parameter）。为此，我们定义$$\theta$$为网络统计量的系数，它是一个向量。此外，$$k(\theta )$$是归一化常数，它可以确保模型中各种网络统计量形成链接的概率之和为1。这样，关于观察到一组网络链接的概率可以用指数随机模型表示为以下公式：
 
-$$
-P(\mathbf{Y} = \mathbf{y}|\mathbf{X}) = exp[{\theta } ^{T} g(\mathbf{y},\mathbf{X})]/k(\theta )
-$$
+$$ P(\mathbf{Y} = \mathbf{y}|\mathbf{X}) = exp[{\theta } ^{T} g(\mathbf{y},\mathbf{X})]/k(\theta ) $$
 
 以上模型还可以表达为logit模型的形式。如果两个节点i和j之间存在链接的概率表示为$$p_{ij}$$，那么不存在链接的概率可以表示为$$1-p_{ij}$$。$$p_{ij} / (1-p_{ij})$$表示事件发生的相对似然率（the relative likelihood），又被称之为优势比（odds ratio）。比如，在信息转发的情境当中，A总共发了10条信息，B转发了其中的8条，那么优势比就是0.8/0.2 = 4。Logit模型当中的因变量是优势比的自然对数形式，相应的模型表达为以下形式：
 
 
-$$
-logit(Y_{ij} = 1) = ln(\frac{p_{ij}}{1-p_{ij}}) = {\theta }^{T} \mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij}
-$$
+$$ logit(Y_{ij} = 1) = ln(\frac{p_{ij}}{1-p_{ij}}) = {\theta }^{T} \mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij} $$
 
 
 以上公式当中，定义$$Y_{ij}$$为节点i和j之间形成链接的一个随机变量。当$$y_{ij}$$取值由0变为1的时候，所带来的$$g(\mathbf{y},\mathbf{X})$$的变化表示为$$\mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij}$$。
