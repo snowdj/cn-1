@@ -17,8 +17,6 @@ For example: https://raw.github.com/chengjun/cn/gh-pages/_posts/2013-09-07-part-
         - R
         ---                
 
-![](http://farm6.staticflickr.com/5547/12715481793_6f7835b3a4_o.jpg)
-
 You can view the header here: https://github.com/chengjun/cn/blob/gh-pages/_posts/2013-09-07-part-of-speech-analysis-with-opennlp.markdown
 
 ## Using MathJax on Github:Pages
