@@ -5,6 +5,18 @@ When you write the md file, you have to define the headers.
 When you mark the categories and tags, do forget to put a blank space between  "-" and your categories or tags.
 For example: https://raw.github.com/chengjun/cn/gh-pages/_posts/2013-09-07-part-of-speech-analysis-with-opennlp.markdown
 
+        ---
+        layout: post
+        title: "Simulating network diffusion with R"
+        date: 2014-03-09 10:41
+        comments: true
+        categories: 
+        - network
+        tags:
+        - information diffusion
+        - R
+        ---                
+
 ![](http://farm6.staticflickr.com/5547/12715481793_6f7835b3a4_o.jpg)
 
 You can view the header here: https://github.com/chengjun/cn/blob/gh-pages/_posts/2013-09-07-part-of-speech-analysis-with-opennlp.markdown
