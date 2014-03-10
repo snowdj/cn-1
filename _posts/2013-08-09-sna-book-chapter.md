@@ -325,12 +325,16 @@ tags:
 
 为了进行模型估计，还需要引入一些参数（parameter）。为此，我们定义$$\theta$$为网络统计量的系数，它是一个向量。此外，$$k(\theta )$$是归一化常数，它可以确保模型中各种网络统计量形成链接的概率之和为1。这样，关于观察到一组网络链接的概率可以用指数随机模型表示为以下公式：
 
-$$ P(\mathbf{Y} = \mathbf{y}|\mathbf{X}) = exp[{\theta } ^{T} g(\mathbf{y},\mathbf{X})]/k(\theta ) $$
+$$ 
+P(\mathbf{Y} = \mathbf{y}|\mathbf{X}) = exp[{\theta } ^{T} g(\mathbf{y},\mathbf{X})]/k(\theta ) 
+$$
 
 以上模型还可以表达为logit模型的形式。如果两个节点i和j之间存在链接的概率表示为$$p_{ij}$$，那么不存在链接的概率可以表示为$$1-p_{ij}$$。$$p_{ij} / (1-p_{ij})$$表示事件发生的相对似然率（the relative likelihood），又被称之为优势比（odds ratio）。比如，在信息转发的情境当中，A总共发了10条信息，B转发了其中的8条，那么优势比就是0.8/0.2 = 4。Logit模型当中的因变量是优势比的自然对数形式，相应的模型表达为以下形式：
 
 
-$$ logit(Y_{ij} = 1) = ln(\frac{p_{ij}}{1-p_{ij}}) = {\theta }^{T} \mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij} $$
+$$ 
+logit(Y_{ij} = 1) = ln(\frac{p_{ij}}{1-p_{ij}}) = {\theta }^{T} \mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij} 
+$$
 
 
 以上公式当中，定义$$Y_{ij}$$为节点i和j之间形成链接的一个随机变量。当$$y_{ij}$$取值由0变为1的时候，所带来的$$g(\mathbf{y},\mathbf{X})$$的变化表示为$$\mathbf{\delta} [g(\mathbf{y}, \mathbf{X})]_{ij}$$。
