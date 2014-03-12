@@ -12,12 +12,14 @@ tags:
 ## 引言
 空间分析（spatial analysis）对于扩散研究非常重要，它揭示了传播在空间维度上的分布。令人略感惊奇的是空间分析的研究者越来越多地使用R软件。其中一个原因是R包罗万象，而空间分析仍在发展且神情未定。在这个时候难以判定哪种方法最优。此时，策略当然是博观约取。R因其囊括众多统计方法而成为连接不同分析套路的首选；另外在R当中使用者可以继续开发新的数据分析包。可谓一举两得。　
 　 
+　 
+　 
 	# read data
 	library(maptools)
 	library(sp)
 	library(rgdal)
 
-    setwd("D:/chengjun/Milan")
+    	setwd("D:/chengjun/Milan")
 	dat = read.csv("./Social pulse/Milano_sample.csv", header = FALSE, stringsAsFactors = FALSE, sep = ";", quote = "")
 	names(dat) = c("lan", "time", "geo", "timestamp", "mname", "mid", "entities", "user")
 	
