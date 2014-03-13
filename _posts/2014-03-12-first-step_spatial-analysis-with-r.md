@@ -221,11 +221,11 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 
 参考文献
 > Lloyd，D.C.(2007) Local Models for Spatial Analysis. CRC press
-> 
+
 > Baddeley, A. (2010) Analysing spatial point patterns in R. Workshop notes. CSIRO online technical publication. URL: www.csiro.au/resources/pf16h.html
-> 
+
 > Diggle, P.J. (1985) A kernel method for smoothing point process data. Applied Statistics (Journal of the Royal Statistical Society, Series C) 34 (1985) 138–147.
-> 
+
 > Diggle, P.J. (2003) Statistical analysis of spatial point patterns, Second edition. Arnold.
 
 
