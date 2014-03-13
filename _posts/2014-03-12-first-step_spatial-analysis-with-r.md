@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "空间分析初步：读入数据和简单绘图"
+title: "空间分析初步：空间点类型分析"
 date: 2014-03-12 19:44
 comments: true
 categories: 
@@ -11,6 +11,38 @@ tags:
 
 ### 引言
 空间分析（spatial analysis）对于扩散研究非常重要，它揭示了传播在空间维度上的分布。令人略感惊奇的是空间分析的研究者越来越多地使用R软件。其中一个原因是R包罗万象，而空间分析仍在发展且神情未定。在这个时候难以判定哪种方法最优。此时，策略当然是博观约取。R因其囊括众多统计方法而成为连接不同分析套路的首选；另外在R当中使用者可以继续开发新的数据分析包。可谓一举两得。　
+
+### 数据读入
+
+我使用的是2013年米兰城12月份推特用户的地理信息数据。该数据来自[Big Data Challenge](http://www.telecomitalia.com/tit/en/bigdatachallenge/contest/dataset.html) of Telecommunication。使用Python写很简单的script从其服务器api接口读取数据:
+
+
+	# Download milano tweets data using python
+	# chengjun wang @ cmc
+	# 2014 Mar 11
+	
+	import urllib2
+	import json
+	
+	f = open('D:/chengjun/Milan/Social pulse/Milano_sample.csv', 'w')
+	for offset in range(0,269290/100 +1):
+		print "working on offset: ", offset
+		req_url = 'https://api.dandelion.eu/datagem/social-pulse-milano/data/v1/?$limit=100&$offset='+str(offset)+'&$app_id=d...a&$app_key=2e...7c'
+		jstr = urllib2.urlopen(req_url).read() # json string
+		""" these are flickr-specific """
+		jinfo = json.loads( jstr )
+		for i in range(0, len(jinfo['items'])):
+			lan = jinfo['items'][i]['language']
+			time = jinfo['items'][i]['created']
+			geo = jinfo['items'][i]['geometry']['coordinates']
+			timestamp = jinfo['items'][i]['timestamp']
+			municipality_name = jinfo['items'][i]['municipality']['name']
+			municipality_id = jinfo['items'][i]['municipality']['acheneID']
+			entities = jinfo['items'][i]['entities']
+			user = jinfo['items'][i]['user']
+			print >>f, "%s;%s;%s;%s;%s;%s;'%s';%s" % (lan, time, geo, timestamp, municipality_name, municipality_id, entities, user)
+	f.close()
+
 
 首先，读入点的时空分布数据。　 
 
