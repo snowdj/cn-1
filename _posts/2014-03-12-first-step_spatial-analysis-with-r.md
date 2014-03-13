@@ -207,7 +207,7 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 
 显然发推特的空间位置的分布并非随机的，具有较明显的聚集现象，所以G方程一开始就增长很快，而虚空空间函数F方程则增长缓慢。
 
-这毕竟还是有点不够形象，有没有高大上的形象的方法？试试kernel smoother of point density:
+这毕竟还是有点不够形象，有没有高大上的形象的方法？试试[kernel smoother of point density](http://cran.at.r-project.org/web/packages/spatstat/vignettes/getstart.pdf):
 
 	plot(density.ppp(geo_ppp), main = "")
 
@@ -220,6 +220,7 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 
 
 参考文献
+
 > Lloyd，D.C.(2007) Local Models for Spatial Analysis. CRC press
 
 > Baddeley, A. (2010) Analysing spatial point patterns in R. Workshop notes. CSIRO online technical publication. URL: www.csiro.au/resources/pf16h.html
