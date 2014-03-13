@@ -207,9 +207,26 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 
 显然发推特的空间位置的分布并非随机的，具有较明显的聚集现象，所以G方程一开始就增长很快，而虚空空间函数F方程则增长缓慢。
 
+这毕竟还是有点不够形象，有没有高大上的形象的方法？试试kernel smoother of point density:
+
+	plot(density.ppp(geo_ppp), main = "")
+
+![](http://farm3.staticflickr.com/2636/13124643824_4ee4b447d5_c.jpg)
+
+注意density.ppp返回的不是一个概率密度。它是对点密度的估计。密度是每个单位空间里随机点的期望。密度通常与空间位置有关。使用空间面积对密度函数积分，得到的是落入该区域的点的数量。
+
+于是乎，规律就更明显了：不仅仅是简单的点聚集，而且是箭靶形式的聚集，像北京环城路一样。越是中心，点就越密集。
+
+
 
 参考文献
-> Christopher D. Lloyd (2007) Local Models for Spatial Analysis. CRC press
+> Lloyd，D.C.(2007) Local Models for Spatial Analysis. CRC press
+> 
+> Baddeley, A. (2010) Analysing spatial point patterns in R. Workshop notes. CSIRO online technical publication. URL: www.csiro.au/resources/pf16h.html
+> 
+> Diggle, P.J. (1985) A kernel method for smoothing point process data. Applied Statistics (Journal of the Royal Statistical Society, Series C) 34 (1985) 138–147.
+> 
+> Diggle, P.J. (2003) Statistical analysis of spatial point patterns, Second edition. Arnold.
 
 
 
