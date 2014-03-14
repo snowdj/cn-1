@@ -147,7 +147,7 @@ $$\overline{d}_{min} = \frac{\sum_{i}^{n}d_{min}(X_i)}{n}$$
 
 于是可以定义事件-事件最近邻居距离，即任意一个事件到它的最近事件之间的距离。任意一个事件$$E_i$$的事件-事件最近邻居距离 
 
-$$d_i = {min}_j \{{d_{ij, \forall j\neq i}} \}$$
+$$d_i = {min}_j \{{d_{ij, for all j\neq i}} \}$$
 
 对于一个距离d, 可定义G(d)为最近邻居距离的累计频数分布：
 
@@ -208,6 +208,8 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 ![](http://farm8.staticflickr.com/7362/13124385414_f32593880e.jpg)
 
 显然发推特的空间位置的分布并非随机的，具有较明显的聚集现象，所以G方程一开始就增长很快，而虚空空间函数F方程则增长缓慢。
+
+### 空间点过程分析
 
 这毕竟还是有点不够形象，有没有高大上的形象的方法？试试[kernel smoother of point density](http://cran.at.r-project.org/web/packages/spatstat/vignettes/getstart.pdf):
 
