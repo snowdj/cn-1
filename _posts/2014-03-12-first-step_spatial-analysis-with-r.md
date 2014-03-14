@@ -218,6 +218,101 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 于是乎，规律就更明显了：不仅仅是简单的点聚集，而且是箭靶形式的聚集，像北京环城路一样。越是中心，点就越密集。
 
 
+不过不要高兴太早，因为这个结果还是太粗糙。我们明明看到点的聚集情况并非如此完美的圆环。因为使用kernel平滑方法估计点的密度这种方法对于频宽（bandwidth）的大小特别敏感。有必要加以控制。另外，这里涉及到两种kernel的方法：四次多项式平滑和高斯平滑。这里要使用splancs这个R包。
+
+	##############
+	"quartic and Gaussian kernels"
+	##############
+	
+	library(splancs)
+
+抱怨一下，因为以下用到的bw.diggle这个用来为kernel密度来选择经过交叉检验的频宽（Cross Validated Bandwidth Selection for Kernel Density）的命令，我不得不使用部分数据，因为它实在太消耗内存了。
+	
+	# subset a week-long small data
+	dat1 = subset(dat, dat$day >=as.Date("2013-12-01")&dat$day <=as.Date("2013-12-07"))
+	
+	geo = data.frame(dat1$p1, dat1$p2)
+	geo_ppp = ppp(geo[,1], geo[,2], 
+	  c(min(geo[,1]), max(geo[,1])),
+	  c(min(geo[,2]), max(geo[,2]))
+	) # slow
+	
+	## Quartic kernel
+	mserwq<-mse2d(as.points(coordinates(geo)),
+	  as.points(list(x=c(0,1,1,0), y=c(0,0,1,1))), 100, range = .001) # flexible range
+	bwq<-mserwq$h[which.min(mserwq$mse)]
+	bwq
+	
+	## Gaussian kernel
+	mserw<-bw.diggle(as(geo_ppp, "ppp")) #   Reached total allocation of 32765Mb: see help(memory.size)
+	bw<-as.numeric(mserw)
+	bw
+	
+	"plot the Mean Square Error-Bandwidth"
+	par(mfrow=c(1, 2))
+	plot(mserwq$h, mserwq$mse, xlab="Bandwidth", ylab="MSE", type="l", main="Quartic kernel")
+	i<-which.min(mserwq$mse)
+	points(mserwq$h[i], mserwq$mse[i], col = "red")
+	plot(mserw, main="Gaussian kernel", xlab="Bandwidth", ylab="MSE")
+	points(attr(mserw, "h")[attr(mserw, "iopt")], bw, col = "red")
+
+![](http://farm8.staticflickr.com/7310/13145953075_2b2ae6a1e1.jpg)	
+
+看，最优化的频宽选择并不太有用，不过频宽真得很小。
+	
+	geos = SpatialPointsDataFrame(geo, geo)
+	poly = as.points(list(x = c(0, 0, 1, 1), y = c(0, 1, 1, 0)))
+	
+	sG <- Sobj_SpatialGrid(geos, maxDim=100)$SG
+	grd <- slot(sG, "grid")
+	summary(grd)
+	
+	# k0 <- spkernel2d(geos, poly, h0=bw, grd)
+	# k1 <- spkernel2d(geos, poly, h0=.05, grd)
+	# k2 <- spkernel2d(geos, poly, h0=.1, grd)
+	# k3 <- spkernel2d(geos, poly, h0=.15, grd)
+	# df <- data.frame(k0=k0, k1=k1, k2=k2, k3=k3) 
+	# kernels <- SpatialGridDataFrame(grd, data=df)
+	# summary(kernels)
+	# 这里都是NA,四次多项式的结果并不好
+
+	##################################
+	cc <- coordinates(sG); head(cc)
+	xy<-list(x=cc[,1], y=cc[,2])
+	k0<-density(as(geos, "ppp"), .5*bw, dimyx=c(100, 100), xy=xy)
+	k1<-density(as(geos, "ppp"), .5*bw*200, dimyx=c(100, 100), xy=xy)
+	k2<-density(as(geos, "ppp"), .5*bw*500, dimyx=c(100, 100), xy=xy)
+	k3<-density(as(geos, "ppp"), .5*bw*600, dimyx=c(100, 100), xy=xy)
+	k4<-density(as(geos, "ppp"), .5*bw*800, dimyx=c(100, 100), xy=xy)
+	k5<-density(as(geos, "ppp"), .5*bw*1000, dimyx=c(100, 100), xy=xy)
+	k6<-density(as(geos, "ppp"), .5*bw*1500, dimyx=c(100, 100), xy=xy)
+	k7<-density(as(geos, "ppp"), .5*bw*2000, dimyx=c(100, 100), xy=xy)
+	"plot the MSE-Bandwidth"
+	png(file = "./gaussian_kernel_density_first_week_in_december2.png", 
+	width=8, height=16, 
+	units="in", res=700)
+	
+	par(mfrow=c(4, 2), mar=rep(1, 4))
+	plot(k0)
+	plot(k1)
+	plot(k2)
+	plot(k3)
+	plot(k4)
+	plot(k5)
+	plot(k6)
+	plot(k7)
+	
+	dev.off()
+
+![](http://farm8.staticflickr.com/7408/13145698615_5559e6ba2c_o.png)
+
+这里列出几个比较小的频宽的核密度图：这与我们的观察比较一致。
+
+	# kernels$k7<-as(k7, "SpatialGridDataFrame")$v
+	df <- data.frame(k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5， k6 = k6, k7 = k7) 
+	kernels <- SpatialGridDataFrame(grd, data=df)
+	summary(kernels)
+
 
 参考文献
 
