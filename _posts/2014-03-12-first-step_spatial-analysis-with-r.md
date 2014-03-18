@@ -75,7 +75,7 @@ tags:
 
 	spl = spTransform(ost, CRS("+proj=longlat")) # convert to longitude and latitude
 
-如果要画出spl的话，速度有点慢。因为绘制的点比较多。这一步
+如果要画出spl的话，速度有点慢, 因为绘制的点比较多。
 
 用了其中一个小数据(涵盖一天中的几个小时)，为了展现了每个小时的[动态变化](http://chengjun.github.io/big_data_challenge/visualization.html)，使用CartoDB网站来制作了一个简单的可视化。顺便找了一遍各种javascript的库和其它包（googleVis, Echarts等），发现都不实用，所以还是用R吧。
 
@@ -316,6 +316,9 @@ $$G = F = 1-e^{-\lambda \pi d^2}$$
 	df <- data.frame(k0=k0, k1=k1, k2=k2, k3=k3, k4=k4, k5=k5， k6 = k6, k7 = k7) 
 	kernels <- SpatialGridDataFrame(grd, data=df)
 	summary(kernels)
+
+
+
 
 
 参考文献
