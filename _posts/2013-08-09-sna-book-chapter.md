@@ -367,7 +367,12 @@ statnet是一个R包 (Goodreau, Handcock, Hunter, Butts, & Morris, 2008)，其�
         "User_followers_count", "User_friends_count",
         "User_statuses_count", "User_verified" )])
     # 合并节点属性到网络节点数据
-    nodeAtt = merge(node, att, by = "User_idstr", sort = F, all = FALSE)
+    ~~nodeAtt = merge(node, att, by = "User_idstr", sort = F, all = FALSE)~~
+    library(plyr)
+    att1 = join(att, province, by = "User_province" )
+    nodeAtt = join(node, att, by = "User_idstr")
+
+
     # 设置节点属性
     set.vertex.attribute(n,"User_gender",nodeAtt$User_gender)
     set.vertex.attribute(n,"User_followers",nodeAtt$User_followers_count)
