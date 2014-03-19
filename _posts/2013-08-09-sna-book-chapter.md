@@ -366,19 +366,30 @@ statnet是一个R包 (Goodreau, Handcock, Hunter, Butts, & Morris, 2008)，其�
         "User_screen_name", "User_gender",
         "User_followers_count", "User_friends_count",
         "User_statuses_count", "User_verified" )])
+    
     # 合并节点属性到网络节点数据
-    ~~nodeAtt = merge(node, att, by = "User_idstr", sort = F, all = FALSE)~~
+    # Add province name
+    province = read.csv("D:/chengjun/css/part05/chapter11/data/weiboprovince.csv", 
+	       stringsAsFactors= F, header = F, sep = ",")
+    names(province) = c("User_province", "User_province_name")
+	
     library(plyr)
     att1 = join(att, province, by = "User_province" )
     nodeAtt = join(node, att, by = "User_idstr")
-
-
-    # 设置节点属性
+	
     set.vertex.attribute(n,"User_gender",nodeAtt$User_gender)
-    set.vertex.attribute(n,"User_followers",nodeAtt$User_followers_count)
-    set.vertex.attribute(n,"User_friends",nodeAtt$User_friends_count)
-    set.vertex.attribute(n,"User_statuses",nodeAtt$User_statuses_count)
+    nodeAtt$User_verified[is.na(nodeAtt$User_verified)]="FALSE"
     set.vertex.attribute(n,"User_verified",nodeAtt$User_verified)
+    nodeAtt$User_friends[is.na(nodeAtt$User_friends)]=0
+    set.vertex.attribute(n,"User_friends",nodeAtt$User_friends)
+	
+    set.vertex.attribute(n,"User_city",nodeAtt$User_city)
+    set.vertex.attribute(n,"User_province",nodeAtt$User_province)
+    set.vertex.attribute(n,"User_bi_followers",nodeAtt$User_bi_followers_count)
+    nodeAtt$User_followers_count[is.na(nodeAtt$User_followers_count)]=0
+    set.vertex.attribute(n,"User_followers",nodeAtt$User_followers_count)
+    set.vertex.attribute(n,"User_statuses",nodeAtt$User_statuses_count)
+    set.vertex.attribute(n,"User_favourites",nodeAtt$User_favourites_count)
 
 当数据的准备工作做好之后，这个时候我们可以重新查看网络对象（在我们的饿例子中是n）的属性。在R console当中，输入summary(n)即可查看网络属性：    
 
