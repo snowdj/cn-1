@@ -3,7 +3,7 @@ title: 计算传播学
 layout: page
 ---
 
-<!--
+
 <ul class="listing">
 {% for post in site.posts %}
   {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
@@ -19,7 +19,7 @@ layout: page
 </ul>
 
 
-
+<!--
 <ul class="listing">
 {% for post in site.categories %}
     <li class="listing-item">
@@ -28,7 +28,7 @@ layout: page
     </li>
 {% endfor %}
 </ul>
--->
+
 
 
 
@@ -79,3 +79,5 @@ layout: page
   {% endif %}
   (共{{ paginator.total_posts }}篇)
 </div>
+
+-->
