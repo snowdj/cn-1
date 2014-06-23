@@ -47,7 +47,7 @@ layout: page
 <div id="post-pagination" class="paginator">
 
   {% if paginator.previous_page %}
-    {% if paginator.previous_page == 0.01 %}
+    {% if paginator.previous_page == 1 %}
     <a href="/"><前页</a>
     {% else %}
     <a href="/page{{paginator.previous_page}}"><前页</a>
@@ -56,7 +56,7 @@ layout: page
     <span class="previous disabled"><前页</span>
   {% endif %}
 
-      {% if paginator.page == 0.01 %}
+      {% if paginator.page == 1 %}
       <span class="current-page">1</span>
       {% else %}
       <a href="/">1</a>
