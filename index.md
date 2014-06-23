@@ -17,7 +17,7 @@ layout: page
   </li>
 {% endfor %}
 </ul>
--->
+
 
 <ul class="listing">
 {% for post in site.categories %}
@@ -27,7 +27,7 @@ layout: page
     </li>
 {% endfor %}
 </ul>
-
+-->
 
 <ul class="listing">
 {% for post in paginator.posts %}
