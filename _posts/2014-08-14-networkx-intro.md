@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Networkx初步：创建网络、提取属性和绘图"
+title: "NetworkX初步：创建网络、提取属性和绘图"
 date: 2014-08-14
 comments: true
 categories: 
@@ -10,7 +10,7 @@ tags:
 - python
 ---
 
-Networkx是使用python分析网络数据的重要武器。它的使用非常简单。
+NetworkX是使用python分析网络数据的重要武器。它的使用非常简单。
 
 首先，创建网络对象：
 
