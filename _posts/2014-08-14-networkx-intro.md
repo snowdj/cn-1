@@ -55,6 +55,8 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
 ![](http://chengjun.qiniudn.com/demo.png)
 
 
+计算流距离：
+
     '''
     # get flow distance
     '''
@@ -95,6 +97,7 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
         return L.values(), D.values(), T.values()
 
 
+拟合耗散曲线：
 
  
     def sizeAdjustedFit(G):
@@ -127,5 +130,10 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
         res = model.fit()
         b, a = res.params[1:]
         return [a, b, Dmax, Tmax]
+
+看看拟合的参数a、b和最大耗散、最大流入：
+
     
     sizeAdjustedFit(G)
+
+Out[343]: [1.110315606030349, 0.056521292967881304, 80.0, 315.0]
