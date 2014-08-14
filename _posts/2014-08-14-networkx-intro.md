@@ -1,12 +1,13 @@
 ---
 layout: post
-title: ""
-date: 2008-01-01
+title: "Networkx初步"
+date: 2014-08-14
 comments: true
 categories: 
-- 
+- network
 tags:
-- 
+- networkx
+- python
 ---
 
     import matplotlib.pyplot as plt
