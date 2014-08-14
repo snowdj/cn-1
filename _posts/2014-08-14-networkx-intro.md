@@ -55,4 +55,77 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
 ![](http://chengjun.qiniudn.com/demo.png)
 
 
+    '''
+    # get flow distance
+    '''
+    def toSink(G, i):
+            try:
+                di = G[i]['sink'].values()[0]
+            except:
+                di = 0 
+            return di
+            
+    def flowDistanceDissipationToSink(G): #input a balanced nx graph
+        R = G.reverse()
+        mapping = {'source':'sink','sink':'source'} 
+        H = nx.relabel_nodes(R,mapping)
+        #---------initialize flow distance dict------
+        L = dict((i,1) for i in G.nodes())  #FlowDistance
+        #---------prepare weighted out-degree dict------
+        D = {i: toSink(G, i) for i in G.nodes()} #Di
+        T = G.out_degree(weight='weight')        #Ti
+        #---------iterate until converge------------
+        ls = np.array(L.values())
+        delta = len(L)*0.01 + 1
+        while delta > len(L)*0.01:
+            for i in L:
+                l=1
+                for m,n in H.edges(i):
+                    l+=L[n]*H[m][n].values()[0]/float(T[m])
+                L[i]=l
+            delta = sum(np.abs(np.array(L.values()) - ls))
+            ls = np.array(L.values())
+        #---------clean the result-------
+        del L['sink']
+        for i in L:
+            L[i]-=1
+        L['sink'] = L.pop('source')
+        T['sink'] = T.pop('source')
+        D['sink'] = D.pop('source')
+        return L.values(), D.values(), T.values()
+
+
+
  
+    def sizeAdjustedFit(G):
+        # G = h
+        fd, di, ti = flowDistanceDissipationToSink(G)
+        # sort data.frame
+        mt = np.array([fd, di, ti]).T
+        mts = sorted(mt.tolist(), key = lambda x: x[0])
+        fd, di, ti = np.array(mts).T
+        # get sum values
+        Drmax = sum(di)
+        Dmax = sum(di)
+        Tmax = sum(ti)
+        di_cum = [ sum(di[:i+1]) for i in range(len(fd))]
+        # replace zero with a small number
+        for k, i in enumerate(di_cum):
+            if i==0:
+                di_cum[k] = 0.000001
+            else:
+                pass
+        # regression
+        ti_cum = [ sum(ti[:i+1]) for i in range(len(fd))]
+        di_cum_log = log(di_cum)
+        ti_cum_log = log(ti_cum)
+        Drmax_log = [log(Drmax) for i in range(len(fd))]
+        import statsmodels.api as sm
+        x = sm.add_constant(di_cum_log)
+        X = np.column_stack((x, Drmax_log))
+        model = sm.OLS(ti_cum_log, X)
+        res = model.fit()
+        b, a = res.params[1:]
+        return [a, b, Dmax, Tmax]
+    
+    sizeAdjustedFit(G)
