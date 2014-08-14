@@ -34,7 +34,7 @@ Networkx是使用python分析网络数据的重要武器。它的使用非常简
     G.add_edge(3,'sink',weight=25)
     G.add_edge(5,'sink',weight=35)
     
-可以很容易提取边的权重  
+可以很容易提取边的权重: 
 
     edges,colors = zip(*nx.get_edge_attributes(G,'weight').items())
     
@@ -46,7 +46,8 @@ Networkx是使用python分析网络数据的重要武器。它的使用非常简
 
     pos=nx.spring_layout(G) #设置网络的布局
     
-绘制网络
+绘制网络:
+
     nx.draw(G, pos, node_color = 'orange', with_labels = True,
             nodelist = d.keys(), node_size = [v*5 for v in d.values()], 
             edgelist = edges, edge_color = colors, width = 5, edge_cmap=plt.cm.Blues)
