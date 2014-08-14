@@ -67,7 +67,7 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
                 di = 0 
             return di
             
-    def flowDistanceDissipationToSink(G): #input a balanced nx graph
+    def flowDistanceDT(G): #input a balanced nx graph
         R = G.reverse()
         mapping = {'source':'sink','sink':'source'} 
         H = nx.relabel_nodes(R,mapping)
@@ -102,7 +102,7 @@ NetworkX是使用python分析网络数据的重要武器。它的使用非常简
  
     def sizeAdjustedFit(G):
         # G = h
-        fd, di, ti = flowDistanceDissipationToSink(G)
+        fd, di, ti = flowDistanceDT(G)
         # sort data.frame
         mt = np.array([fd, di, ti]).T
         mts = sorted(mt.tolist(), key = lambda x: x[0])
