@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Networkx初步:创建网络、提取属性和绘图"
+title: "Networkx初步: 创建网络、提取属性和绘图"
 date: 2014-08-14
 comments: true
 categories: 
