@@ -19,7 +19,7 @@ tags:
 
 	> Encoding("“")
 	[1] "latin1"
-{:lang="ruby"}
+
 
 只所以说是原形，是因为它们可以变形！"â€œ"， "â€™"， "â€\u009d"， "â€"都是它在不设定Encoding的环境下的形状。但我觉得不足以刻画我对它的厌恶，特别附图一张：
 
@@ -41,7 +41,7 @@ tags:
 			       'shortIntro', 'focus', 'geo', 'model', 'benefit', 'budget',
 				 'revenue', 'recognization', 'background',
 				 'innovation', 'entrepreneur')
-{:lang="ruby"}
+
 
 ## 2. 文本数据清理第一步：载入R包，选取变量
 
@@ -49,7 +49,7 @@ tags:
 	library(topicmodels)
 	
 	text = dat1$entrepreneur
-{:lang="ruby"}
+
 
 ## 3. 终于可以删除部分邪恶的拉丁引号
 
@@ -62,14 +62,13 @@ tags:
 	text = gsub("â€", " ", text,  fixed = TRUE )
 	text = gsub("</b>", " ", text,  fixed = TRUE )
 	text = gsub("<b>", " ", text,  fixed = TRUE )
-{:lang="ruby"}
 
 注意：1. 这些不规则的latin表达在r的script里再次打开会改变。所以，每次使用都要来这个网页里粘贴复制，也算是一种state-of-art，markdown都比R script保存的持久啊。2.使用gsub的代价是corpus被再度转化为character。所以这段代码如放在下面使用还要用Corpus命令再度转回来。
 	
 	corpus <- Corpus(   VectorSource( text )  )  # corpus[[1]] ## inspect the first corpus
 	# make each letter lowercase
 	corpus <- tm_map(corpus, tolower) 
-{:lang="ruby"}
+
 
 ## 4. 我这里根据研究需要，要剔除人名、地名、组织名。	
 
@@ -87,7 +86,7 @@ tags:
 	corpus <- tm_map(corpus, removeWords, my_stopwords); corpus[[1]]
 	 
 	corpus <- tm_map(corpus, removePunctuation)
-{:lang="ruby"}
+
 	
 ## 5. 将语料转化为DocumentTermMatrix
  
@@ -95,7 +94,7 @@ tags:
 	Sys.setlocale("LC_COLLATE", "C") # set this for reproducible results
 	
 	corpus <- Corpus(   VectorSource( corpus )  )  # corpus[[1]] ## inspect the first corpus
-{:lang="ruby"}
+
 
 另外，到这里还是会有孤立的邪恶的拉丁单引号存在，但已经和其它term分开了，在以下DocumentTermMatrix的通过设置minWordLength = 3可以将其完全清理。	
 
@@ -110,7 +109,7 @@ tags:
 	                               )  )
 	
 	findFreqTerms(JSS_dtm, lowfreq=0) # 一定要看一下还有没有错误。inspect all the words for errors
-{:lang="ruby"}
+
 	
 ## 6. 你需要的一些背景知识
 
@@ -139,14 +138,14 @@ tags:
 	iconv(x, "latin1", "ASCII//TRANSLIT")
 	iconv(x, "latin1", "ASCII", sub="byte")
 	## End(Not run)
-{:lang="ruby"}
+
 
 ### 6.2 如何看DocumentTermMatrix的内容？
 	inspect(JSS_dtm)
 	colnames(JSS_dtm) # we can find that: [3206]   "works\u009d"    [3207]      "work\u009d"
 	inspect(JSS_dtm[,3206])
 	inspect(JSS_dtm[,"works\u009d"])
-{:lang="ruby"}
+
 
 ### 6.3 关于一些需要跳出的符号
 
@@ -158,11 +157,12 @@ tags:
 	## [1] "a" "b" "c"
 	## or
 	unlist(strsplit("a.b.c", ".", fixed = TRUE))
-{:lang="ruby"}
+
 
 同理，gsub查找替换掉句点comma的时候也有类似的问题。我在使用python处理相邻多个段落的时候，直接使用了list的append的方法，导致两个自然段之间没有空格。这可要害苦我了。很多可以作为段落结尾的标点都要转化为空格。幸好老外写文章没有那么多问号和叹号结尾。
+
 fixed = TRUE意味着要use exact matching.
 
 	text1 = gsub("[.]", " ", text）
 	text1 = gsub("[.]", " ", text, fixed = TRUE )
-{:lang="ruby"}
+
