@@ -12,9 +12,9 @@ tags:
 
 
 
-![]()
+![](http://chengjun.qiniudn.com/longcat.PNG)
 
-分割数据最慢的过程其实是打开和关闭一个文件，因此尽量减少这种操作可以飞速的提升分割数据的速度。之前在stackoverflow上看到一种方法非常高效，放在这里研究一下。
+分割数据最慢的过程其实是打开和关闭一个文件，因此尽量减少这种操作可以飞速的提升分割数据的速度。之前在[stackoverflow上看到一种方法](http://stackoverflow.com/questions/519633/lazy-method-for-reading-big-file-in-python?lq=1)非常高效，放在这里研究一下。
 
      from collections import defaultdict
      
