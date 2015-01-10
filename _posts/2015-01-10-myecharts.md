@@ -67,10 +67,27 @@ http://chengjun.github.io/myecharts/bar.html
 
 <iframe src='http://chengjun.github.io/myecharts/bar.html' scrolling="no" width="600" height = "400"></iframe>
 
+##饼图
+http://chengjun.github.io/myecharts/pie1.html
+
+<iframe src='http://chengjun.github.io/myecharts/pie1.html' scrolling="no" width="600" height = "400"></iframe>
+
+##线图
+http://chengjun.github.io/myecharts/line1.html
+
+<iframe src='http://chengjun.github.io/myecharts/line1.html' scrolling="no" width="600" height = "400"></iframe>
+
 ##地图
 http://chengjun.github.io/myecharts/map9.html
 
 <iframe src='http://chengjun.github.io/myecharts/map9.html' scrolling="no" width="600" height = "400"></iframe>
+
+##力图
+
+http://chengjun.github.io/myecharts/force2
+
+<iframe src='http://chengjun.github.io/myecharts/force2.html' scrolling="no" width="600" height = "400"></iframe>
+
 
 
 ##后记
