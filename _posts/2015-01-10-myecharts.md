@@ -18,6 +18,7 @@ tags:
 - 最后，封装。
 
 
+
             <!DCOTYPE html>
             <html>
             	<head>
@@ -44,11 +45,10 @@ tags:
             				],
             				function(ec){
             					var myChart=ec.init(document.getElementById("main"));  
-                                <!--Input your code here-->					
-            					var
+                                <!--Input your code below-->					
             								
-                                <!--Input your code here-->					
-            					//loading data
+                                <!--Input your code above-->					
+            			//loading data
             					myChart.setOption(option);
             				}
             			);
