@@ -1,0 +1,20 @@
+---
+layout: post
+title: "再次尝试shinyApp"
+date: 2015-01-11
+comments: true
+categories: 
+- 教学
+tags:
+- 可视化
+---
+
+昨天收到了shinyapp的一封邮件，想起之前自己做的关于网络扩散的东西，就像把它转化为app的形式。
+
+<iframe src=”https://chengjun.shinyapps.io/testApp/” width=”100″ frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”></iframe>
+
+
+
+
+
+ 
