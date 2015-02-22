@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "表达、练习、检索——写给Python的初学者"
+title: "表达、检索、练习——写给Python的初学者"
 date: 2015-02-22
 comments: true
 categories: 
