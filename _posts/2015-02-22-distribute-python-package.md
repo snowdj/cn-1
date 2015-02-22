@@ -43,7 +43,7 @@ https://pypi.python.org/pypi?%3Aaction=submit_form
 
 我使用上传的时候出错（typeError），于是直接使用打包好的zip文件（在dist子文件夹当中）手工上传到pypi。注意，每次上传到pypi需要修改一次setup.py中的版本号，并重新打包才可上传。如此而已，比我想象当中要速度快得多、简单的多。
 
-这里是我刚刚打包发布的一个可视化谷歌学术网络的python软件包：![https://pypi.python.org/pypi/scholarNetwork/](https://pypi.python.org/pypi/scholarNetwork/)
+这里是我刚刚打包发布的一个可视化谷歌学术网络的python软件包：[https://pypi.python.org/pypi/scholarNetwork/](https://pypi.python.org/pypi/scholarNetwork/)
 
 
  
