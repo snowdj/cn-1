@@ -24,8 +24,8 @@ https://pypi.python.org/pypi?%3Aaction=submit_form
 ##打包和发布工具
 先要安装两个包：twine和wheel。
 
-  pip install wheel
-  pip install twine
+    pip install wheel
+    pip install twine
 
 ##整理项目文件夹
 找项目实例（https://github.com/pypa/sampleproject）下载下来，修改其中的部分内容即可。详见指南，或者自己摸索即可。
@@ -35,11 +35,11 @@ https://pypi.python.org/pypi?%3Aaction=submit_form
 - 主要参考 https://github.com/pypa/twine
 - Create some distributions in the normal way:
 
- $ python setup.py sdist bdist_wheel
+    $ python setup.py sdist bdist_wheel
  
 - Upload with twine:
 
- $ twine upload dist/*
+    $ twine upload dist/*
 
 我使用上传的时候出错（typeError），于是直接使用打包好的zip文件（在dist子文件夹当中）手工上传到pypi。注意，每次上传到pypi需要修改一次setup.py中的版本号，并重新打包才可上传。如此而已，比我想象当中要速度快得多、简单的多。
 
