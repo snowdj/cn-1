@@ -43,9 +43,9 @@ tags:
 1. 我觉得学python上手很重要，选一个好的IDE很重要，对于windows用户我推荐winpython，使用集成于其中的spyder编程很方便，不需要指定python的路径，安装第三方包也很方便。
 2. 每天都接触点Python,写写博客。
 3. 既然使用Python了，那么google就是你最好的朋友！用英文检索。
-4. 既然用R了，github不要错过。上传你的代码。便于保存和分享。python的精神是开放，开源。
+4. 不要错过Github。上传你的代码。便于保存和分享。python的精神是开放，开源。
 5. 很多时候，最大的问题是你不知道自己面临的问题：我的经验是用英文一句话说出你的问题。然后借助搜索引擎。你一般都能找到答案。Python的email list和stackoverflow中有很多想要的答案。
 6. 实在找不到解决方案，不要过多寄希望于身边的朋友，stackoverflow上有更合适的回答你问题的人！去那里提问。
-7. 熟悉一个package。看其package的文档。
+7. 熟悉一个package。经常阅读package的文档。
 
  
